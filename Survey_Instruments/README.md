@@ -7,3 +7,11 @@ AFUS - available in data releases 2021 and later
 CSLB - available in data releases 2020 and later
 EOLS - available in data releases 2021 and later
 HLES - available in data releases 2020 and later
+
+ 
+| Dataset      | Availability |
+| :--- | :----------- |
+| AFUS      | Data releases 2021 and later       |
+| CSLB   | Data releases 2020 and later        |
+| EOLS   | Data releases 2021 and later        |
+| HLES   | Data releases 2020 and later        |
