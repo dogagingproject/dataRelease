@@ -7,10 +7,10 @@ These columns are constructed in the following manner:
 | :--- | :----------- |
 | HLES_dog_owner      | [dog_id]       |
 | HLES_cancer_conditions   | [dog_id]        |
-| HLES_health_conditions   | [dog_id]__[hs_condition_type]__[hs_condition]__*instance*       |
+| HLES_health_conditions   | [dog_id]_*[hs_condition_type]*_[hs_condition]_*instance*       |
 | AFUS_dog_owner   | [dog_id]_[afus_calendar_year]        |
-| AFUS_cancer_conditions   | [dog_id]__[afus_calendar_year]__*instance*       |
-| AFUS_health_conditions | [dog_id]__[afus_calendar_year]__[afus_hs_new_condition_type]__[afus_hs_new_condition]__*instance*        |
+| AFUS_cancer_conditions   | [dog_id]_*[afus_calendar_year]*_*instance*       |
+| AFUS_health_conditions | [dog_id]_*[afus_calendar_year]*_[afus_hs_new_condition_type]_*[afus_hs_new_condition]*_*instance*        |
 | CSLB   | [dog_id]_[cslb_year] |
 | EOLS  | [dog_id]     |
 
