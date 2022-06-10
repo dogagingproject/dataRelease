@@ -20,4 +20,4 @@
 
 # Tips for working with SPSS files: 
 * The .sav includes raw data values and values labels (1 or 2 and “Purebred” or “Mixed breed”), as well as the original survey question text (“Is your dog a purebred or mixed breed”) in the variable label.
-* In SPSS only, string variables are limited to 255 characters. String variables for longer open-ended text questions will run over into extra variables, each 255 characters in length. -->
+* In SPSS only, string variables are limited to 255 characters. String variables for longer open-ended text questions will run over into extra variables, each 255 characters in length. 
