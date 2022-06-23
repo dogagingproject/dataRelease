@@ -1,3 +1,5 @@
+### Dog Aging Project | Viewable table identifier column descriptions
+
 Each viewable table requires a primary key or identifier column for display purposes.
 These columns are not contained in the downloadable data files.
 
@@ -14,3 +16,6 @@ These columns are constructed in the following manner:
 | CSLB   | `[dog_id]_[cslb_year]` |
 | EOLS  | `[dog_id]`    |
 
+*** 
+
+###### *last updated 2022-06-10*
