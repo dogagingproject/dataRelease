@@ -1,4 +1,4 @@
-### Dog Aging Project | Tips for working with survey data files **
+### Dog Aging Project | Tips for working with survey data files
 
 ##### CSV files:
 * This data format gives users access to the raw data field names and values.  
