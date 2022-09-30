@@ -7,10 +7,10 @@ The purpose of this document is to explain to users the structure of the environ
 | Variable      | Description |
 | :--- | :----------- |
 | `dog_id`      | Unique dog identifier.       |
-| `address_1_or_2`   | 1 = Primary address: corresponding to the location where the dog spends the majority of its time. <br><br> 2 = Secondary address: corresponding to a secondary address where their dog spends time.^1^       |
+| `address_1_or_2`   | 1 = Primary address: corresponding to the location where the dog spends the majority of its time. <br><br> 2 = Secondary address: corresponding to a secondary address where their dog spends time.<sup>1</sup>       |
 | `address_month`  | Month of the entry event. For baseline entries (gm_entry_type = 1), this is the month in which the respondent joined the DAP pack.        |
 | `address_year`   | Year of the entry event. For baseline entries (gm_entry_type = 1), this is the calendar year in which the respondent joined the DAP pack. |
-^1^ The proportion of time that the dog spends in its primary vs. secondary residence can be found in the HLES owner contact instrument (variable name "oc_secondary_residence_time_percentage")
+<sup>1</sup> The proportion of time that the dog spends in its primary vs. secondary residence can be found in the HLES owner contact instrument (variable name "oc_secondary_residence_time_percentage")
 
 ### Geocoding metadata variables
 
@@ -225,7 +225,7 @@ New DAP pack members' residential addresses will be geocoded on a regular basis.
 In addition, all respondents will be asked to confirm their information once a year via annual check-in surveys. After these annual check-ins have been completed, we will update any newly changed addresses, geocode them, and link to corresponding environmental indicators. Annual updates will have the "Entry Type" = "Annual Follow-Up" in their gm_entry_type field. 
 
 ##### Annual data updates
-Early each year, all geocoded addresses will be updated with newly available secondary data. New data will be linked to the most up-to-date respondent address and imported into the December month-year event for the preceding year (ie, December 2020 for the 2021 annual update). Source data year will be indicated in the "data year" fields corresponding to each secondary data category. Data updates will have the "Entry Type" field = "Secondary data update" in their gm_entry_type field. If the data update occurs in the same month-year that an owner profile update OR an annual revision occurs, these will be indicated by "Entry Type" = "Secondary data update + Owner profile update" or "Entry Type" = "Secondary data update + Annual Follow-Up" respectively in their gm_entry_type field.
+Early each year, all geocoded addresses will be updated with newly available secondary data. New data will be linked to the most up-to-date respondent address and imported into the December month-year event for the preceding year (ie, December 202cd 0 for the 2021 annual update). Source data year will be indicated in the "data year" fields corresponding to each secondary data category. Data updates will have the "Entry Type" field = "Secondary data update" in their gm_entry_type field. If the data update occurs in the same month-year that an owner profile update OR an annual revision occurs, these will be indicated by "Entry Type" = "Secondary data update + Owner profile update" or "Entry Type" = "Secondary data update + Annual Follow-Up" respectively in their gm_entry_type field.
 
 ^9^ Steven Manson, Jonathan Schroeder, David Van Riper, and Steven Ruggles. IPUMS National Historical 
 Geographic Information System: Version 14.0 [Database]. Minneapolis, MN: IPUMS. 
