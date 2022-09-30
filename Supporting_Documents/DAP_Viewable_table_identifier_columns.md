@@ -16,8 +16,9 @@ These columns are constructed in the following manner:
 | AFUS_health_conditions | `[dog_id]_[afus_calendar_year]_[afus_hs_new_condition_type]_[afus_hs_new_condition]_instance`       |
 | CSLB   | `[dog_id]_[cslb_year]` |
 | EOLS  | `[dog_id]`    |
+| ENVIRONMENT | `[dog_id]_[address_month]_address_year`       |
 | ClinicalLabData      | `[dog_id]_[Year]`       |
 
 *** 
 
-###### *last updated 2022-09-16*
+###### *last updated 2022-09-30*

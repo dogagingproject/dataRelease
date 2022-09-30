@@ -158,12 +158,13 @@ Owner-reported primary and secondary addresses are geocoded and linked to second
 | `PrimaryAddress_HLES`      | Participant has primary address at HLES geocoded and linked to environmental data      |  Y <br> N |
 | `SecondaryAddress_HLES`      | Participant has secondary address at HLES geocoded and linked to environmental data     |  Y <br> N  |
 
-These fields indicate the presence of a geocoded primary address, but no geocoded secondary address for our example dog.
+These fields indicate the presence of a geocoded primary address provided at HLES, but no geocoded secondary address for our example dog.
+Additionally, the participant did not provide any updated primary or secondary address information in their 2021 AFUS responses. 
 
-| dog_id      | PrimaryAddress_HLES | SecondaryAddress_HLES |
-| :--- | :---------------------------- | :------------------------------- |
-| 33975   | Y | N | 
+| dog_id      | PrimaryAddress_HLES | SecondaryAddress_HLES | PrimaryAddress_AFUS2021 | SecondaryAddress_AFUS2021 |
+| :--- | :---------------------------- | :------------------------------- | :---------------------------- | :------------------------------- |
+| 33975   | Y | N | N | N |
 
 *** 
 
-###### *last updated 2022-09-16*
+###### *last updated 2022-09-30*

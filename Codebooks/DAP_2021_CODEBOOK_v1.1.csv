@@ -27,6 +27,8 @@ Dog_Overview,Sample_Y1_CP,"If relevant, were blood chemistry panel results retur
 Dog_Overview,Sample_Y1_UA,"If relevant, were urinalysis results returned by 2021-12-31?",Text,NA
 Dog_Overview,PrimaryAddress_HLES,"At HLES, participant has primary address geocoded and linked to environmental data?",Y | N,Y | N
 Dog_Overview,SecondaryAddress_HLES,"At HLES, participant has secondary address geocoded and linked to environmental data?",Y | N,Y | N
+Dog_Overview,PrimaryAddress_AFUS2021,"At AFUS 2021, participant has primary address geocoded and linked to environmental data?",Y | N,Y | N
+Dog_Overview,SecondaryAddress_AFUS2021,"At AFUS 2021, participant has secondary address geocoded and linked to environmental data?",Y | N,Y | N
 HLES_dog_owner,dog_id,Study ID,Numeric,NA
 HLES_dog_owner,owner_id,Owner ID:,Numeric,NA
 HLES_dog_owner,st_hles_completion_date,DAP Pack Date/Time,YYYY-MM-DD,NA
