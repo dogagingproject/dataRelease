@@ -10,6 +10,7 @@ The purpose of this document is to explain to users the structure of the environ
 | `address_1_or_2`   | 1 = Primary address: corresponding to the location where the dog spends the majority of its time. <br><br> 2 = Secondary address: corresponding to a secondary address where their dog spends time.<sup>1</sup>       |
 | `address_month`  | Month of the entry event. For baseline entries (gm_entry_type = 1), this is the month in which the respondent joined the DAP pack.        |
 | `address_year`   | Year of the entry event. For baseline entries (gm_entry_type = 1), this is the calendar year in which the respondent joined the DAP pack. |
+
 <sup>1</sup> The proportion of time that the dog spends in its primary vs. secondary residence can be found in the HLES owner contact instrument (variable name "oc_secondary_residence_time_percentage")
 
 ### Geocoding metadata variables
@@ -19,16 +20,15 @@ provided:
 
 | Variable      | Description |
 | :--- | :----------- |
-| `gm_address_type`      | Contains a value if address was geocoded via esri ArcGIS Business Analyst geocoder^2^ (`gm_geocoder` = 1). <br><br> 1 = StreetAddress: From [ArcGIS](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm): "A street address that differs from PointAddress because the house number is interpolated from a range of numbers. Reference data contains street center lines with house number ranges, along with administrative divisions and optional postal code information, for example, 647 Haight St, San Francisco, CA, 94117". <br><br> 2 = PointAddress: From [ArcGIS](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm): "A street address based on points that represent house and building locations. Typically, this is the most spatially accurate match level. Reference data contains address points with associated house numbers and street names, along wit h administrative divisions and optional postal code. The X / Y and geometry output values for a PointAddress match represent the street entry location for the address; this is the location used for routing operations. The DisplayX and DisplayY values represent the rooftop, or actual, location of the address. Example: 380 New York St, Redlands, CA, 92373". |
+| `gm_address_type`      | Contains a value if address was geocoded via esri ArcGIS Business Analyst geocoder<sup>2</sup> (`gm_geocoder` = 1). <br><br> 1 = StreetAddress: From [ArcGIS](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm): "A street address that differs from PointAddress because the house number is interpolated from a range of numbers. Reference data contains street center lines with house number ranges, along with administrative divisions and optional postal code information, for example, 647 Haight St, San Francisco, CA, 94117". <br><br> 2 = PointAddress: From [ArcGIS](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm): "A street address based on points that represent house and building locations. Typically, this is the most spatially accurate match level. Reference data contains address points with associated house numbers and street names, along wit h administrative divisions and optional postal code. The X / Y and geometry output values for a PointAddress match represent the street entry location for the address; this is the location used for routing operations. The DisplayX and DisplayY values represent the rooftop, or actual, location of the address. Example: 380 New York St, Redlands, CA, 92373". |
 | `gm_match_type`   | Contains a value if address was geocoded via esri ArcGIS Business Analyst geocoder (`gm_geocoder` = 1) or manually matched in ArcMap `gm_geocoder` = 3. <br><br> 1 = 'A': coordinates were automatically found at one of the two precise levels (see `gm_addr_type`) using esri Business Analyst geocoder <br><br> 2 = 'PP': coordinates were manually placed following a search for this address. <br><br> 3 = 'M': Business Analyst initially returned a "tie" for this address, and tied coordinates were resolved based on research and review. | 
-| `gm_state_fips`   | Two-digit state FIPS code corresponding to geocoded coordinates, attained via spatial join with TIGER US census tract boundary shapefiles corresponding to the relevant years' American Community Survey (accessed via [IPUMS NHGIS](https://www.nhgis.org/)^3^). | 
+| `gm_state_fips`   | Two-digit state FIPS code corresponding to geocoded coordinates, attained via spatial join with TIGER US census tract boundary shapefiles corresponding to the relevant years' American Community Survey (accessed via [IPUMS NHGIS](https://www.nhgis.org/)<sup>3</sup>). | 
 | `gm_geocoder`   | Indicates which geocoding method/level returned the coordinates for this address (See geocoding documentation appendix below for more detailed information on this process). <br><br> 1 = esri: Matched automatically via esri Business Analyst geocoder <br><br> 2 = SmartyStreets: Matched via SmartyStreets, returning Zip9 precision <br><br> 3 = manual: Matched via manual revision <br><br> 4 = CannotLocate: Unable to locate this address, even after manual review | 
 | `gm_entry_type`   | Indicates the entry event type corresponding with each row. <br><br> 1 = Baseline entry: initial gecoding attempt based on respondent address provided in the HLES owner contact survey. <br><br> 2 = Owner Profile Update: based on an updated residential address provided in the "Update My Profile" feature of the Dog Aging Project participant portal. Users can update their profile at any time. <br><br> 3 = Annual follow-up: based on new residential address information provided in the annual HLES follow-up survey. <br><br> 4 = Secondary Data Update: reflects a secondary data update entry. These entries link the most up to date address for each respondent with updated secondary data, where applicable, and always correspond with a month of 12. <br><br> 5 = Secondary Data Update + Owner Profile Update: A value of 5 reflects incidents when a respondent has provided an updated address in their owner profile portal, and this updated address is simultaneously linked to updated secondary data. <br><br> 6 = Secondary data update + Annual follow-up: Secondary data update and new annual follow-up address provided occurs in the same month-year. <br><br> 7 = Manually corrected address: reflects a manually corrected address. In these cases, a respondent provides a non-geocodable address in their initial HLES Owner Contact form. We reach out to respondents for clarification, and if they provide corrections, we geocode this corrected address. NOTE: This procedure was discontinued in October 2020. The time required to reach out to respondents was cost prohibitive when compared to compared to the limited number of corrections that were actually made. |
 | `gm_complete`   | Indicates whether a given record's geocoding processing is complete. All addresses in a Curated Data Release will be marked "complete" (2) except unmatchable addresses (corresponding to gm_geocoder = 4), which will be marked "unverified" (1) for this field. <br><br> 0 = incomplete. <br><br> 1 = unverified. <br><br> 2 = complete |
-^2^ For more information about ArcGIS Business Analyst, see this link: https://www.esri.com/en-us/arcgis/products/arcgis-business-analyst/overview
-^3^ Steven Manson, Jonathan Schroeder, David Van Riper, and Steven Ruggles. IPUMS National Historical 
-Geographic Information System: Version 14.0 [Database]. Minneapolis, MN: IPUMS. 
-2019. http://doi.org/10.18128/D050.V14.0
+
+<sup>2</sup> For more information about ArcGIS Business Analyst, see this link: https://www.esri.com/en-us/arcgis/products/arcgis-business-analyst/overview
+<sup>3</sup> Steven Manson, Jonathan Schroeder, David Van Riper, and Steven Ruggles. IPUMS National Historical Geographic Information System: Version 14.0 [Database]. Minneapolis, MN: IPUMS. 2019. http://doi.org/10.18128/D050.V14.0
 
 ### Contextual variables
 
@@ -36,7 +36,7 @@ Successfully geocoded respondent addresses are linked to pre-existing environmen
 
 #### Census Tract-level Sociodemographic and Economic Indicators
 
-Socioeconomic and demographic information come from the US Census^4^, and are provided at the census tract level. We include descriptive tract information; race/ethnicity variables; tract gender breakdown; socioeconomic status (SES) variables; and neighborhood stability variables. Each census variable provided contains the prefix "cv".
+Socioeconomic and demographic information come from the US Census<sup>4</sup>, and are provided at the census tract level. We include descriptive tract information; race/ethnicity variables; tract gender breakdown; socioeconomic status (SES) variables; and neighborhood stability variables. Each census variable provided contains the prefix "cv".
 
 | Variable      | Description |
 | :--- | :----------- |
@@ -85,12 +85,12 @@ Socioeconomic and demographic information come from the US Census^4^, and are pr
 | `cv_pct_us_born` | Percent Born in United States. |
 | `cv_stability_index` | Stability Index: Calculated by taking average z-score of 3 preceding variables. |
 
-^4^ U.S. Census Bureau. (2019). 2015-2019 American Community Survey 5-year Public Use Microdata Samples. 
+<sup>4</sup> U.S. Census Bureau. (2019). 2015-2019 American Community Survey 5-year Public Use Microdata Samples. 
 
 
 ### Census Tract-level Air Pollution Indicators
 
-Air pollutant concentration data come from public-use estimates developed by the Center for Air, Climate and Energy Solutions (CACES) using v1 empirical models as described by Kim et al. (2018)^5^. The most recent data are from 2015 ([available here](https://www.CACES.us/data)) and include model-based census tract level estimates for six pollutants. From CACES:
+Air pollutant concentration data come from public-use estimates developed by the Center for Air, Climate and Energy Solutions (CACES) using v1 empirical models as described by Kim et al. (2018)<sup>5</sup>. The most recent data are from 2015 ([available here](https://www.CACES.us/data)) and include model-based census tract level estimates for six pollutants. From CACES:
 
 _"These models provide estimates of outdoor concentrations for six pollutants (four gases: O3, CO, SO2, NO2; two aerosols: PM10, PM2.5) throughout the contiguous U.S. Model estimates are annual-average values for years 1979 - 2015 (SO2, NO2), 1988 - 2015 (PM10), 1990-2015 (CO), 1999-2015 (PM2.5), and the average during May through September of the daily maximum 8-hour moving average for years 1979-2015 (O3). When downloading data, concentrations are listed as the variable "pred_weight"; units are micrograms per cubic meter for PM2.5 and PM10, parts per billion for ozone, SO2, and NO2, and parts per million for carbon monoxide. Data are available at national, state, county, census tract, and census block group levels."_ 
 
@@ -104,17 +104,17 @@ These data are merged to geocoded respondent addresses using their 11-digit trac
 | `pv_pm10` | Particulate matter ($\mu$g/m3). |
 | `pv_pm25` | Particulate matter ($\mu$g/m3). |
 | `pv_so2` | Sulfur dioxide (ppb). |
-| `pv_complete` | Indicates whether a given record's pollutant data variables are complete. All geocoded addresses should be marked "complete" (2) except AK & HI addresses^6^, which will be marked "unverified" (1) for this field. <br><br> 0 = Incomplete <br><br> 1 = Unverified <br><br> 2 = Complete. |
+| `pv_complete` | Indicates whether a given record's pollutant data variables are complete. All geocoded addresses should be marked "complete" (2) except AK & HI addresses<sup>6</sup>, which will be marked "unverified" (1) for this field. <br><br> 0 = Incomplete <br><br> 1 = Unverified <br><br> 2 = Complete. |
 | `pv_data_year` | Indicates the year of associated pollutant data. Currently only one option exists. <br><br> 1 = 2015 CACES |
 
-^5^ Kim, S. Y., M. Bechle, S. Hankey, L. Sheppard, A. A. Szpiro, and J. D. Marshall. 2018. "A Parsimonious Approach for Estimating Individual-Level Concentrations of Criteria Pollutants over the Contiguous US." Environ Health Perspect. 
-^6^ NOTE: Pollutant levels are estimated ONLY for the contiguous US, excluding Alaska & Hawaii. Respondents with addresses in AK and HI will have their pollutant instrument missing and marked "unverified" in this variable. . 
+<sup>5</sup> Kim, S. Y., M. Bechle, S. Hankey, L. Sheppard, A. A. Szpiro, and J. D. Marshall. 2018. "A Parsimonious Approach for Estimating Individual-Level Concentrations of Criteria Pollutants over the Contiguous US." Environ Health Perspect. 
+<sup>6</sup> NOTE: Pollutant levels are estimated ONLY for the contiguous US, excluding Alaska & Hawaii. Respondents with addresses in AK and HI will have their pollutant instrument missing and marked "unverified" in this variable. . 
 The field "pv_complete" will be given a "1", corresponding to "unverified", and all other geocoded addresses will have a "2" (corresponding to "complete") for this field. Addresses that are unable to be geocoded (gm_geocoder = 4) will have a "0" for this field.
 
 
 ### County-level Temperature and Precipitation Measures
 
-Temperature and Precipitation variables data come from NOAA's Climate Divisional Database ([nClimDiv](ftp://ftp.ncdc.noaa.gov/pub/data/cirs/climdiv/))^7^. These data are provided at the county level. NOAA provides county-level climate indicators at two temporal levels. First, annual summaries contain temperature and precipitation averages for each month of each year. Second, "normal summaries" are provided, which are long-term averages over 30-year periods in increments of 10 years. Both annual and normal variables are linked to respondent addresses. 
+Temperature and Precipitation variables data come from NOAA's Climate Divisional Database ([nClimDiv](ftp://ftp.ncdc.noaa.gov/pub/data/cirs/climdiv/))<sup>7</sup>. These data are provided at the county level. NOAA provides county-level climate indicators at two temporal levels. First, annual summaries contain temperature and precipitation averages for each month of each year. Second, "normal summaries" are provided, which are long-term averages over 30-year periods in increments of 10 years. Both annual and normal variables are linked to respondent addresses. 
 
 #### Global summaries of the month variables 
 
@@ -148,11 +148,11 @@ NOTE: Not all US regions are included in the NOAA nClimDiv. For such instances, 
 - Ad Hoc missing regions in contiguous US: Some contiguous counties are missing from the NOAA nClimDiv, particularly small counties that are enveloped entirely within larger counties. In these instances, we provide 
 the climate variables for the larger surrounding counties in which these smaller counties are located. To date, only one such missing county has been identified (Lexington City County, FIPS ID 51678).
 
-^7^ Vose, Russell S.; Applequist, Scott; Squires, Mike; Durre, Imke; Menne, Matthew J.; Williams, Claude N., Jr.; Fenimore, Chris; Gleason, Karin; Arndt, Derek (2014): NOAA's Gridded Climate Divisional Dataset (CLIMDIV). NOAA National Climatic Data Center. doi:10.7289/V5M32STR
+<sup>7</sup> Vose, Russell S.; Applequist, Scott; Squires, Mike; Durre, Imke; Menne, Matthew J.; Williams, Claude N., Jr.; Fenimore, Chris; Gleason, Karin; Arndt, Derek (2014): NOAA's Gridded Climate Divisional Dataset (CLIMDIV). NOAA National Climatic Data Center. doi:10.7289/V5M32STR
 
 ### Neighborhood Walkability Indicators
 
-The Walkability variables (prefix = `"wv"`) draw from two separate data sources. First, three variables are provided by Walkscore, a private company that generates a walkability index based on walking routes to nearby amenities and other indicators (see [here](https://www.walkscore.com/methodology.shtml) for more information). We use the walkscoreAPI R [package](https://cran.r-project.org/web/packages/walkscoreAPI/walkscoreAPI.pdf) to retrieve Walkscores for each geocoded address based on their geocoded lat/lon coordinates. Second, we include residential density variables from the ACS. We include these in our walkability instrument based on the conclusions drawn by Mooney et al. (2020)^8^, who find that residential density is an appropriate proxy measure for walkability. Residential density is calculated at the census tract level. 
+The Walkability variables (prefix = `"wv"`) draw from two separate data sources. First, three variables are provided by Walkscore, a private company that generates a walkability index based on walking routes to nearby amenities and other indicators (see [here](https://www.walkscore.com/methodology.shtml) for more information). We use the walkscoreAPI R [package](https://cran.r-project.org/web/packages/walkscoreAPI/walkscoreAPI.pdf) to retrieve Walkscores for each geocoded address based on their geocoded lat/lon coordinates. Second, we include residential density variables from the ACS. We include these in our walkability instrument based on the conclusions drawn by Mooney et al. (2020)<sup>8</sup>, who find that residential density is an appropriate proxy measure for walkability. Residential density is calculated at the census tract level. 
 
 | Variable      | Description |
 | :--- | :----------- |
@@ -168,10 +168,7 @@ The Walkability variables (prefix = `"wv"`) draw from two separate data sources.
 | `wv_res_density` | Housing units per square mile (`wv_housing_units`/`cv_areasqmi`). | 
 | `wv_density_data_year` | Indicates data source year. 1, 2018 5-year ACS; 2, 2019 5-year ACS, etc. |
 
-^8^ Stephen J. Mooney, Philip M. Hurvitz, Anne Vernez Moudon, Chuan Zhou, Ronit Dalmat, Brian E. Saelens. 
-"Residential neighborhood features associated with objectively measured walking near home: Revisiting 
-walkability using the Automatic Context Measurement Tool (ACMT)." Health & Place, Volume 63. doi: 
-https://doi.org/10.1016/j.healthplace.2020.102332
+<sup>8</sup>Stephen J. Mooney, Philip M. Hurvitz, Anne Vernez Moudon, Chuan Zhou, Ronit Dalmat, Brian E. Saelens. "Residential neighborhood features associated with objectively measured walking near home: Revisiting walkability using the Automatic Context Measurement Tool (ACMT)." Health & Place, Volume 63. doi: https://doi.org/10.1016/j.healthplace.2020.102332
 
 ### Geocoding Appendix
 
@@ -179,8 +176,7 @@ The following appendix describes the DAP Core D geocoding process in detail for 
 
 #### I. Adjudicating Geocoders:
 
-Our first step in the geocoding process was to identify a geocoder which could match 
-respondent addresses with the greatest degree of accuracy. We tested the first several hundred submitted respondent addresses against three popular geocoders: 1) esri's Business Analyst 2019 data, which is similar to their ArcGIS StreetMap Premium project; 2) SmartyStreets, an online API based geocoder; and 3) the "geocode" function in the R package ggplot2, which uses the Google geocoding API. 
+Our first step in the geocoding process was to identify a geocoder which could match respondent addresses with the greatest degree of accuracy. We tested the first several hundred submitted respondent addresses against three popular geocoders: 1) esri's Business Analyst 2019 data, which is similar to their ArcGIS StreetMap Premium project; 2) SmartyStreets, an online API based geocoder; and 3) the "geocode" function in the R package ggplot2, which uses the Google geocoding API. 
 
 The first 542 addresses were geocoded against all three services. The esri Business Analyst geocoder returned the most complete results and was capable of matching 97.8% of the addresses at a high quality (rooftop or street address) level. SmartyStreets was able to match 95.4% of the addresses at a high-quality level (Zip9 or higher), and the Google API was able to match 96.5% of the results at some level (accuracy score not available). 
 
@@ -197,8 +193,7 @@ See metadata documentation above for detailed information on the geocoding metad
 
 #### II. Spatially joining coordinates to census boundaries 
 
-Precisely-matched coordinates are then plotted over the TIGER US census tract boundary shapefiles corresponding to the relevant years' American Community Survey (accessed via IPUMS NHGIS^9^). Using the spatial join tool in ArcMap, the block group information that each 
-respondent address point falls within is joined to the respondents' study id. 
+Precisely-matched coordinates are then plotted over the TIGER US census tract boundary shapefiles corresponding to the relevant years' American Community Survey (accessed via IPUMS NHGIS<sup>9</sup>). Using the spatial join tool in ArcMap, the block group information that each respondent address point falls within is joined to the respondents' study id. 
 
 #### III. Merging to secondary datasets
 
@@ -206,7 +201,7 @@ respondent address point falls within is joined to the respondents' study id.
 Once each address is assigned a block-group level FIPS code, chosen relevant neighborhood characteristics are merged with each respondents' record using the 11-digit tract FIPS code as the join key. This creates a matrix of respondent study ID, tract FIPS code, and relevant census variables. For a complete list of census variables selected, see Census Variable documentation above. 
 
 ##### Pollutant Variables (prefix = "pv")
- Pollutant concentration data come from public-use estimates developed by the Center for Air, Climate and Energy Solutions (CACES) using v1 empirical models as described by Kim et al. (2018)^10^. These data are merged to geocoded respondent addresses using their 11-digit tract FIPS code.
+ Pollutant concentration data come from public-use estimates developed by the Center for Air, Climate and Energy Solutions (CACES) using v1 empirical models as described by Kim et al. (2018)<sup>10</sup>. These data are merged to geocoded respondent addresses using their 11-digit tract FIPS code.
  
 ##### Temperature and Precipitation Variables (prefix = "tp")
 Temperature and precipitation variables come from the NOAA's Climate Divisional Database (nClimDiv), which makes available four key climate indicators (maximum air temperature, minimum air temperature, average air temperature, and precipitation in inches) for nearly every census county in the contiguous US and Alaska, both annually (dating back to 1895) and in long-term 30-year averages in increments of 10 years ("normals"). We include these four monthly variables for the most recent calendar year as well as the four monthly variables for the most recent "normals" period. This results in 96 total climate variables included (12 months * 4 variables * 2 periods). For in-depth description of these variables, see climate variables documentation above. 
@@ -227,10 +222,8 @@ In addition, all respondents will be asked to confirm their information once a y
 ##### Annual data updates
 Early each year, all geocoded addresses will be updated with newly available secondary data. New data will be linked to the most up-to-date respondent address and imported into the December month-year event for the preceding year (ie, December 202cd 0 for the 2021 annual update). Source data year will be indicated in the "data year" fields corresponding to each secondary data category. Data updates will have the "Entry Type" field = "Secondary data update" in their gm_entry_type field. If the data update occurs in the same month-year that an owner profile update OR an annual revision occurs, these will be indicated by "Entry Type" = "Secondary data update + Owner profile update" or "Entry Type" = "Secondary data update + Annual Follow-Up" respectively in their gm_entry_type field.
 
-^9^ Steven Manson, Jonathan Schroeder, David Van Riper, and Steven Ruggles. IPUMS National Historical 
-Geographic Information System: Version 14.0 [Database]. Minneapolis, MN: IPUMS. 
-2019. http://doi.org/10.18128/D050.V14.0
-^10^ Kim S.-Y.; Bechle, M.; Hankey, S.; Sheppard, L.; Szpiro, A. A.; Marshall, J. D. 2018. "A parsimonious approach for estimating individual-level concentrations of criteria pollutants over the contiguous U.S." In Preparation.
+<sup>9</sup> Steven Manson, Jonathan Schroeder, David Van Riper, and Steven Ruggles. IPUMS National Historical Geographic Information System: Version 14.0 [Database]. Minneapolis, MN: IPUMS. 2019. http://doi.org/10.18128/D050.V14.0
+<sup>10</sup> Kim S.-Y.; Bechle, M.; Hankey, S.; Sheppard, L.; Szpiro, A. A.; Marshall, J. D. 2018. "A parsimonious approach for estimating individual-level concentrations of criteria pollutants over the contiguous U.S." In Preparation.
 
 *** 
 
