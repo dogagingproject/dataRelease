@@ -51,6 +51,14 @@ afus_hs_new_diagnosis_year, afus_hs_new_eye_condition_cause, afus_hs_new_follow_
 afus_hs_new_neurological_condition_vestibular_disease_type, and afus_hs_new_required_surgery_or_hospitalization.
 
 ***
+  
+**Affected Dataset: HLES_health_conditions, AFUS_health_conditions**
+
+**Affected Variable(s): hs_condition, afus_hs_new_condition**
+
+Two hs_condition codes (716, 1702) were erroneously excluded from previous datasets. This is corrected as of the 2021 Open Access and 2022 Curated Data releases.
+
+***
 
 **Affected Dataset: CSLB**
 
@@ -60,4 +68,4 @@ Some participants indicated that their dogs both “never” displays any behavi
 
 ***
 
-###### *last updated 2022-06-22*
+###### *last updated 2023-03-31*

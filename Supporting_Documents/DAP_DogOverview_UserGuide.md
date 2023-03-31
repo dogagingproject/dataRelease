@@ -132,7 +132,7 @@ The example dog is enrolled in Precision, and we see a `DNA_Swab_ID` populated, 
 | 33975  |  31020061515058 |
 
 
-### Clinical Lab Data
+### Clinical Lab Data (first available for Open Access in 2022 Curated Data Release)
 
 Blood and urine samples are collected from dogs enrolled in the Precision cohort. Any laboratory results returned by 2021-12-31 are included in the Curated data. The following variables provide information about a given dog's clinical lab data status:
 
@@ -167,4 +167,4 @@ Additionally, the participant did not provide any updated primary or secondary a
 
 *** 
 
-###### *last updated 2022-09-30*
+###### *last updated 2023-03-30*
