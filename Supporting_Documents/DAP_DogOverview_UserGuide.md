@@ -1,6 +1,6 @@
 ## Dog Aging Project | Dog Overview User Guide
 
-This document provides an introduction to the Dog Overview dataset.
+This document provides an introduction to the Dog Overview dataset using an example dog from the 2021 Curated Data release.
 
 ### Dog status
 
@@ -31,7 +31,7 @@ In HLES, owners are asked to provide their dog's birth year (and month, if known
 | Owner provided      | DOB estimation method | Age estimation method |
 | :--- | :---------------------------- | :------------------------------- |
 | Birth year and month | Use birth year and month; assume 15 for day | Difference between estimated DOB and HLES completion date |
-| Birth year only | Use birth year; assume 6 for month and 15 for day | Difference between estimated DOB and HLES completion date |
+| Birth year only | Use birth year; if birth year != HLES completion year, assume 6 for month and 15 for day; otherwise assume midpoint between 1/1 and HLES completion date | Difference between estimated DOB and HLES completion date |
 | Age | Substract age from HLES completion date | Use owner-reported age | 
 
 These estimation methods are used to define the following variables.
@@ -42,7 +42,7 @@ These estimation methods are used to define the following variables.
 | `Estimated_Age_Years_at_HLES` | Best available estimate of age at HLES | 3.5 |
 | `AgeDOB_Estimation_Method` | Method used to estimate DOB and age |  Estimated using owner-reported age <br> Estimated using owner-reported birth year <br> Estimated using owner-reported birth year and month |
 
-Going back to our example dog, we see that age and DOB were estimated using owner-provided birth year only. The owner indicated that the dog was born in 2010; we assume the birth month to be June and the birth day to be the 15th, resulting in an estimated DOB of 2010-06-15. If we subtract the estimated DOB from the date of HLES completion (which is the same as the DAP Pack date), we estimate the dog's age at HLES to be 10.3 years. 
+Going back to our example dog, we see that age and DOB were estimated using owner-provided birth year only. The owner indicated that the dog was born in 2010. The birth year and year of HLES completion are different, so we assume the birth month to be June and the birth day to be the 15th, resulting in an estimated DOB of 2010-06-15. If we subtract the estimated DOB from the date of HLES completion (which is the same as the DAP Pack date), we estimate the dog's age at HLES to be 10.3 years. 
 
 | dog_id      | DAP_Pack_Date | Estimated_DOB | Estimated_Age_Years_at_HLES | AgeDOB_Estimation_Method | 
 | :--- | :------------------ | :-------------------- |  :------------------- | :------------ |
@@ -105,10 +105,11 @@ This section provides a snapshot of which surveys have been completed for a give
 
 | Variable      | Description | Example Values |
 | :--- | :---------------------------- | :------------------------------- |
-| `CSLB_2020_Complete`      | Canine social and learned behavior completed in 2020      |  Y <br> N |
-| `CSLB_2021_Complete`      | Canine social and learned behavior completed in 2021     |  Y <br> N |
-| `AFUS_2021_Complete`      | 11-character string indicating instrument-level completion for AFUS 2021. Character positions indicate: <br> 1 = Owner contact <br> 2 = Dog demograpics <br> 3 = Physical activity <br> 4 = Environment <br> 5 = Behavior <br> 6 = Diet <br> 7 = Meds and Preventives <br> 8 = Health Status <br> 9 = Owner demographics <br> 10 = DORA <br> 11 = MDORS |  YYYYYYYYYYY <br> (all instruments complete) <br><br> YYYNNNNNNNN <br> (owner contact, dog demographics, physical activity complete) |
-| `EOLS_Complete`      | End of life survey complete    |  Y <br> N |
+| `CSLB_YYYY_Complete`      | Canine social and learned behavior completed in YYYY      |  Y <br> N |
+| `AFUS_YYYY_Complete`*      | 11-character string indicating instrument-level completion for AFUS YYYY. Character positions indicate: <br> 1 = Owner contact <br> 2 = Dog demograpics <br> 3 = Physical activity <br> 4 = Environment <br> 5 = Behavior <br> 6 = Diet <br> 7 = Meds and Preventives <br> 8 = Health Status <br> 9 = Owner demographics <br> 10 = DORA <br> 11 = MDORS |  YYYYYYYYYYY <br> (all instruments complete) <br><br> YYYNNNNNNNN <br> (owner contact, dog demographics, physical activity complete) | 
+| `AFUS_YearY_Complete`*      | 11-character string indicating instrument-level completion for AFUS followup year Y. Character positions indicate: <br> 1 = Owner contact <br> 2 = Dog demograpics <br> 3 = Physical activity <br> 4 = Environment <br> 5 = Behavior <br> 6 = Diet <br> 7 = Meds and Preventives <br> 8 = Health Status <br> 9 = Owner demographics <br> 10 = DORA <br> 11 = MDORS |  YYYYYYYYYYY <br> (all instruments complete) <br><br> YYYNNNNNNNN <br> (owner contact, dog demographics, physical activity complete) | 
+| `EOLS_Complete`      | End of life survey complete    |  Y <br> N | 
+* `AFUS_YYYY_Complete` replaced by `AFUS_YearY_Complete` beginning in 2022 Curated Data release.
 
 Looking again to our example dog, we see that the owner completed CSLB for both 2020 and 2021. All portions of AFUS were completed for 2021. And (unsurprisingly, since we have no knowledge of the dog being deceased), EOLS has not been completed.
 
@@ -134,7 +135,7 @@ The example dog is enrolled in Precision, and we see a `DNA_Swab_ID` populated, 
 
 ### Clinical Lab Data (first available for Open Access in 2022 Curated Data Release)
 
-Blood and urine samples are collected from dogs enrolled in the Precision cohort. Any laboratory results returned by 2021-12-31 are included in the Curated data. The following variables provide information about a given dog's clinical lab data status:
+Blood and urine samples are collected from dogs enrolled in the Precision cohort. Any laboratory results returned by DataYear-12-31 are included in the Curated data. The following variables provide information about a given dog's clinical lab data status:
 
 | Variable      | Description | Example Values |
 | :--- | :---------------------------- | :------------------------------- |
@@ -142,7 +143,7 @@ Blood and urine samples are collected from dogs enrolled in the Precision cohort
 | `Sample_Y1_CP`      | Blood chemistry panel results available    |  Y <br> N  |
 | `Sample_Y1_UA`      | Urinalysis results available   |  Y <br> N  |
 
-The example dog is enrolled in Precision, and CBC, CP, and UA results were returned by 2021-12-31. This indicates that sample data results are expected in the Clinical Lab Data files.
+The example dog is enrolled in Precision, and CBC, CP, and UA results were returned by DataYear-12-31. This indicates that sample data results are expected in the Clinical Lab Data files.
 
 | dog_id      | Sample_Y1_CBC | Sample_Y1_CP | Sample_Y1_UA
 | :--- | :---------------------------- | :------------------------------- | :------------------------------- |
@@ -167,4 +168,4 @@ Additionally, the participant did not provide any updated primary or secondary a
 
 *** 
 
-###### *last updated 2023-03-30*
+###### *last updated 2023-05-04*
