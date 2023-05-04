@@ -109,7 +109,7 @@ This section provides a snapshot of which surveys have been completed for a give
 | `AFUS_YYYY_Complete`*      | 11-character string indicating instrument-level completion for AFUS YYYY. Character positions indicate: <br> 1 = Owner contact <br> 2 = Dog demograpics <br> 3 = Physical activity <br> 4 = Environment <br> 5 = Behavior <br> 6 = Diet <br> 7 = Meds and Preventives <br> 8 = Health Status <br> 9 = Owner demographics <br> 10 = DORA <br> 11 = MDORS |  YYYYYYYYYYY <br> (all instruments complete) <br><br> YYYNNNNNNNN <br> (owner contact, dog demographics, physical activity complete) | 
 | `AFUS_YearY_Complete`*      | 11-character string indicating instrument-level completion for AFUS followup year Y. Character positions indicate: <br> 1 = Owner contact <br> 2 = Dog demograpics <br> 3 = Physical activity <br> 4 = Environment <br> 5 = Behavior <br> 6 = Diet <br> 7 = Meds and Preventives <br> 8 = Health Status <br> 9 = Owner demographics <br> 10 = DORA <br> 11 = MDORS |  YYYYYYYYYYY <br> (all instruments complete) <br><br> YYYNNNNNNNN <br> (owner contact, dog demographics, physical activity complete) | 
 | `EOLS_Complete`      | End of life survey complete    |  Y <br> N | 
-* `AFUS_YYYY_Complete` replaced by `AFUS_YearY_Complete` beginning in 2022 Curated Data release.
+*`AFUS_YYYY_Complete` replaced by `AFUS_YearY_Complete` beginning in 2022 Curated Data release.
 
 Looking again to our example dog, we see that the owner completed CSLB for both 2020 and 2021. All portions of AFUS were completed for 2021. And (unsurprisingly, since we have no knowledge of the dog being deceased), EOLS has not been completed.
 
