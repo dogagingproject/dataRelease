@@ -89,7 +89,7 @@ This section contains breed, size, weight, age, and lifestage classifications fo
 | `Weight_Class_at_HLES_10kg` | 10kg-increment weight bin at HLES | <10 <br> 20 - 29.9 <br> 40+ | 
 | `Breed_Class` | AKC status of breed(s) | AKC-Recognized Breed <br> Non-AKC-Recognized or Mixed Breed |
 | `Breed_Size_Class` | Breed size class based on breed and weight | Toy and small AKC-recognized purebred dogs <br> Medium AKC-recognized purebred dogs <br> Standard AKC-recognized purebred dogs <br> Large AKC-recognized purebred dogs <br> Giant AKC-recognized purebred dogs <br> Toy and small non-AKC breed dogs <br> Standard non-AKC breed dogs <br> Large non-AKC breed dogs <br> Giant non-AKC breed dogs |
-| `Age_Class_at_HLES` | Age bin at HLES | <1 <br> 1.0 to 2.9 <br> 9.0 to 10.9 <br> 17+ |
+| `Age_Years_Class_at_HLES` | Age bin at HLES | <1 <br> 1.0 to 2.9 <br> 9.0 to 10.9 <br> 17+ |
 | `Lifestage_Class_at_HLES` |	Lifestage classification based on `Breed_Size_Class` and `Estimated_Age_at_HLES` | Puppy <br> Young adult <br> Mature adult <br> Senior |
 
 Our example dog is placed into the following categories:
