@@ -68,4 +68,22 @@ Some participants indicated that their dogs both “never” displays any behavi
 
 ***
 
-###### *last updated 2023-03-31*
+**Affected Dataset: AFUS_dog_owner**
+
+**Affected Variable(s): afus_pa_swim_XX_weather_frequency, afus_de_property_containment_type_other_description**
+
+These variables contained erroneous NA values in previous datasets. This is corrected as of the 2022 Open Access and 2023 Curated Data releases.
+
+***
+
+***
+
+**Affected Dataset: AFUS_dog_owner**
+
+**Affected Variable(s): afus_df_XX, afus_dt_XX**
+
+These variables contained erroneous FALSE or NA values in previous datasets. This affected the 2022 Curated Data release and is corrected as of the 2022 Open Access and 2023 Curated Data release.
+
+***
+
+###### *last updated 2024-02-08*

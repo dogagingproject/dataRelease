@@ -1,7 +1,7 @@
 DataFile,Variable,SurveyText,Values,ValueLabels
 Dog_Overview,dog_id,Study ID,Numeric,NA
 Dog_Overview,DAP_Pack_Date,DAP Pack Date,YYYY-MM-DD,NA
-Dog_Overview,Cohort,Cohort assignment,DAP Pack | Foundation | Precision,DAP Pack | Foundation | Precision
+Dog_Overview,Cohort,Cohort assignment,DAP Pack | Foundation | Precision,DAP Pack | Foundation | Precision | Precision - Brain Health Study
 Dog_Overview,Cohort_Enroll_Date,"Cohort enrollment date, if relevant.",YYYY-MM-DD,NA
 Dog_Overview,Estimated_DOB,Date of birth estimated from owner-provided information.,YYYY-MM-DD,NA
 Dog_Overview,Estimated_Age_Years_at_HLES,Age in years estimated from owner-provided information.,Numeric,NA
