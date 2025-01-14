@@ -59,9 +59,9 @@ This instrument assesses the dog’s readiness for the cognitive assessment and 
 The following data are collected via the 1-2-3 Treat: Warm-ups instrument:
 | Variable      | Description | Example Values |
 | :--- | :---------------------------- | :------------------------------- |
-| `trt_warmup_handle_side`      | Side of body the dog was walked on for warm-up rounds       | 1 (Left)<br>2 Right) | 
-| `trt_warmup_hand_feed` | Dog response to offered treat | 1 (Enthusiastic)<br>2 (Relucant)<br>3 (Did not eat) |
-| `trt_warmup_box_feed` | Dog response to offered treat | 1 (Enthusiastic)<br>2 (Relucant)<br>3 (Did not eat) |
+| `trt_warmup_handle_side`      | Side of body the dog was walked on for warm-up rounds       | 1 (Left)<br>2 (Right) | 
+| `trt_warmup_hand_feed` | Dog response to offered treat | 1 (Enthusiastic)<br>2 (Reluctant)<br>3 (Did not eat) |
+| `trt_warmup_box_feed` | Dog response to offered treat | 1 (Enthusiastic)<br>2 (Reluctant)<br>3 (Did not eat) |
 | `trt_warmup_*_location` | Treat location on warmup round * | 1 (Box 1)<br>2 (Box 2)<br>3 (Box 3) |
 | `trt_warmup_*_response` | Dog's response on warmup round * | 1 (My dog found food independently) <br> 2 (I helped my dog find the food, and they ate it) <br> 3 (I helped my dog find the food, but they didn't eat it) |
 | `trt_warmup_overall_response_*` | Description of dog’s experience with warm-up activities | 0 (False)<br>1 (True)<br>text |
