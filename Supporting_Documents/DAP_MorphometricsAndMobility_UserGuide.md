@@ -68,19 +68,19 @@ The following data are collected via the Jog & Run Activity instrument:
 
 | Variable      | Description | Example Values |
 | :--- | :---------------------------- | :------------------------------- |
-| `mm_jr_location` | Location has been previously used by owner for jog/run activity | 0 (No)<br>1 Yes)  | 
+| `mm_jr_location` | Location has been previously used by owner for jog/run activity | 0 (No)<br>1 (Yes)  | 
 | `mm_jr_location_description` | Description of jog/run activity location | Text  | 
 | `mm_jr_practice_jog_trials` | Number of jog practice trials | 1<br>2<br>3<br>4<br>5  | 
-| `mm_jr_jog_trial_*_outcome` | Dog successfully completed course in jog trial * | 0 (No)<br>1 Yes)  | 
+| `mm_jr_jog_trial_*_outcome` | Dog successfully completed course in jog trial * | 0 (No)<br>1 (Yes)  | 
 | `mm_jr_jog_trial_*_time_seconds` | Time for dog to jog from start to finish in seconds in jog trial * | Numeric  | 
 | `mm_jr_jog_trial_*_problems` | Problems encountered in jog trial * | Text  | 
-| `mm_jr_jog_trials_motivation_*` | Motivator used during jog trials | 0 (No)<br>Yes(1)  | 
+| `mm_jr_jog_trials_motivation_*` | Motivator used during jog trials | 0 (No)<br>1 (Yes)  | 
 | `mm_jr_jog_trials_motivation_other_description` | Description of other motivator used during jog trials | Text  | 
 | `mm_jr_number_practice_run_trials` | Number of practice run trials | 1<br>2<br>3<br>4<br>5  | 
-| `mm_jr_run_trial_*_outcome` | Dog successfully completed course in run trial * | 0 (No)<br>1 Yes)  | 
+| `mm_jr_run_trial_*_outcome` | Dog successfully completed course in run trial * | 0 (No)<br>1 (Yes)  | 
 | `mm_jr_run_trial_*_time_seconds` | Time for dog to run from start to finish in seconds in run trial * | Numeric  | 
 | `mm_jr_run_trial_*_problems` | Problems encountered in run trial * | Text  | 
-| `mm_jr_jog_trials_motivation_*` | Motivator used during run trials | 0 (No)<br>Yes (1)  | 
+| `mm_jr_jog_trials_motivation_*` | Motivator used during run trials | 0 (No)<br>1 (Yes)  | 
 | `mm_jr_jog_trials_motivation_other_description` | Description of other motivator used during jog trials | Text  | 
 
 ### Morphometrics & Mobility: Stair Climb Activity
@@ -118,4 +118,4 @@ The following data are collected via the Stair Climb Activity instrument:
 
 *** 
 
-###### *last updated 2024-01-31*
+###### *last updated 2025-01-14*
