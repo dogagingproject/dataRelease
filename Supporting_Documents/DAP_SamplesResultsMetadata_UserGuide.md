@@ -41,9 +41,10 @@ These columns are constructed in the following manner:
 <sup>3</sup> Symbols may not display when viewed in Excel.
 
 ### Additional resources 
-Reference ranges for CBC and chemistry panel can be found in the [Clinical Lab Data Reference Intervals](https://github.com/dogagingproject/dataRelease/blob/master/Supporting_Documents/DAP_Clinical_Lab_Reference_Intervals.md)
+Reference ranges for CBC and chemistry panel can be found in the [Clinical Lab Data Reference Intervals](https://github.com/dogagingproject/dataRelease/blob/master/Supporting_Documents/DAP_Clinical_Lab_Reference_Intervals.md)  
 
+For detailed sample collection methodology refer to: <b>Prescott, J., Keyser, A.J., Litwin, P. et al. Rationale and design of the Dog Aging Project precision cohort: a multi-omic resource for longitudinal research in geroscience.GeroScience (2025). https://doi.org/10.1007/s11357-025-01571-3</b> 
 
 *** 
 
-###### *last updated 2024-01-31*
+###### *last updated 2025-03-13*
