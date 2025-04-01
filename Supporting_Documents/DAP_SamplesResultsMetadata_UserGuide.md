@@ -7,7 +7,7 @@ These columns are constructed in the following manner:
 | Variable      | Description | Possible Values | 
 | :--- | :----- | :------------- | 
 | `dog_id`      | Unique identifier for given dog. | Integer | 
-| `Sample_DogSize`      | Dog size for sampling. <br><br>For small dogs (generally <15lb): <br> - Chemistry panel, urine, metabolome and micriobiome samples are collected at clinic visit 1. <br>  - CBC, flow cytometry, and RRBS samples are collected at clinic visit 2 (approximately 6 weeks after clinic visit 1).<br><br>For large dogs, all samples are collected in single clinic visit. | Large <br> Small | 
+| `Sample_DogSize`      | Dog size for sampling. <br><br>For small dogs (generally <15lb): <br> - Chemistry panel, urine, metabolome and microbiome samples are collected at clinic visit 1. <br>  - CBC, flow cytometry, and RRBS samples are collected at clinic visit 2 (approximately 6 weeks after clinic visit 1).<br><br>For large dogs, all samples are collected in single clinic visit. | Large <br> Small | 
 | `Sample_Year`      | Sampling year derived from REDCap event.       | precision_1<br>precision_2<br>precision_... | 
 | `Sample_Type`      | Sample type.  | CBC<br>Chemistry Panel<br>Flow Cytometry<br>Metabolome<br>Microbiome<br>RRBS<br>Urine |  
 | `DAP_Sample_ID` | Unique identifier for given sample. This variable should be used to match to sample results files. | Various numeric or string formats depending on `Sample_Type` |
