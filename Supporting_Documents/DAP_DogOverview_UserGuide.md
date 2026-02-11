@@ -34,7 +34,7 @@ In HLES, owners are asked to provide their dog's birth year (and month, if known
 | :--- | :---------------------------- | :------------------------------- |
 | Birth year and month | Use birth year and month; assume 15 for day unless birth year and month are same as year and month of `DAP_Pack_Date`, in which case assume 1 for day | Difference between estimated DOB and HLES completion date |
 | Birth year only | Use birth year; if birth year != HLES completion year, assume 6 for month and 15 for day; otherwise assume midpoint between 1/1 and HLES completion date | Difference between estimated DOB and HLES completion date |
-| Age | Substract age from HLES completion date | Use owner-reported age | 
+| Age | Subtract age from HLES completion date | Use owner-reported age | 
 
 These estimation methods are used to define the following variables.
 
