@@ -28,15 +28,14 @@ Successful data deliverables migrate to a Dog Aging Project workspace on Terra.b
 
 ### Data model
 
-The table `dna` provides sample information and genomic reports for each dog included in the data release.
+The file `DogAgingProject_GeneticData_CuratedRelease_XXXX.tsv` provides sample information and genomic reports for each dog included in the data release.
 
 Columns:
 
 
 | Variable      | Description |
 | :--- | :----------- |
-| `entity:dna_id`      | copy of platform ID       |
-| `dog_id`   | dog ID, also known as study ID       |
+| `dog`   | dog ID, also known as study ID       |
 | `sample`  | swab ID for sample        |
 | `bioproject`   | accession for NCBI BioProject |
 | `biosample`   | accession for NCBI BioSample |
@@ -45,10 +44,6 @@ Columns:
 | `sex`   | sex, confirmed by chromosome X coverage (see *Sex confirmation*) |
 | `coi`   | coefficient of inbreeding, estimated from runs of homozygosity (see *Coefficients of inbreeding*) |
 | `size`   | genomic size prediction score, ranging from 0 (tiny) to 4 (giant) (see *Size predictions*) |
-
-Information contained in the table matches that provided in the file:
-
-`DogAgingProject_GeneticData_CuratedRelease_XXXX.tsv`
 
 ### Data files
 
@@ -89,7 +84,7 @@ Columns:
 
 ### Raw sequencing data
 
-Raw sequencing read data (FASTQ files) are deposited to the NCBI Sequence Read Archive under BioProject PRJNA800779. Sample IDs correspond to swab IDs (`swab_id`), not study IDs (`dog_id`).
+Raw sequencing read data (FASTQ files) are deposited to the NCBI Sequence Read Archive under BioProject PRJNA800779. Sample IDs correspond to swab IDs (`sample`), not study IDs (`dog_id`).
 
 ### Genotyping data
 
@@ -130,7 +125,7 @@ Genomic size predictions are reported as `size` in file:
 
 ### Global ancestry
 
-We selected publicly available genotype data from 109 modern breeds with at least 4 dogs per breed, 3 regional village dog populations (4 Nigerian village dogs, 5 Vietnamese village dogs, 55 Chinese village dogs), and 2 wolf populations (19 North American wolves and 25 Eurasian wolves) (see *Populations* for full list of population labels and counts). We used *PLINK2* to identify ancestry-informative markers. We selected 4,267,732 biallelic single nucleotide polymorphisms with <10% missing genotypes, and calculated the Wright’s F-statistics using Hudson method for (1) each dog breed versus all other purebred dogs; (2) all village dogs versus all other purebred dogs; (3) each regional village dog population; (4) all wolves versus all other dogs; (5) North American wolves versus Eurasian wolves. We selected 1,569,037 SNPs with F<sub>ST</sub> > 0.5 across all comparisons, and performed LD-based pruning in 250kb windows for r<sup>2</sup> > 0.2 to extract 115,427 markers for global ancestry inference.
+We selected publicly available genotype data from 109 modern breeds with at least 4 dogs per breed, 3 regional village dog populations (4 Nigerian village dogs, 5 Vietnamese village dogs, 55 Chinese village dogs), and 2 wolf populations (19 North American wolves and 25 Eurasian wolves) (see *Populations* for full list of population labels and counts). We used *PLINK2* to identify ancestry-informative markers. We selected 4,267,732 biallelic single nucleotide polymorphisms with <10% missing genotypes, and calculated the Wrightâ€™s F-statistics using Hudson method for (1) each dog breed versus all other purebred dogs; (2) all village dogs versus all other purebred dogs; (3) each regional village dog population; (4) all wolves versus all other dogs; (5) North American wolves versus Eurasian wolves. We selected 1,569,037 SNPs with F<sub>ST</sub> > 0.5 across all comparisons, and performed LD-based pruning in 250kb windows for r<sup>2</sup> > 0.2 to extract 115,427 markers for global ancestry inference.
 
 We merged genotype data for these biallelic SNPs from query samples with genotype data from reference samples, then performed global ancestry inference using *ADMIXTURE* in supervised mode (random seed: 43) to infer ancestry from these populations. We report only admixture proportions over 1% for each dog.
 
@@ -299,4 +294,4 @@ Note that the breed panel used for ancestry inference differs from the panel use
 
 *** 
 
-###### *last updated 2024-01-25*
+###### *last updated 2026-02-13*
