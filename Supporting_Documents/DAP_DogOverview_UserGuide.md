@@ -1,6 +1,6 @@
 ## Dog Aging Project | Dog Overview User Guide
 
-This document provides an introduction to the Dog Overview dataset using an example dog from the 2024 Curated Data release.
+This document provides an introduction to the Dog Overview dataset using an example dog from the 2025 Curated Data release.
 
 ### Dog status
 
@@ -28,12 +28,12 @@ This section provides details regarding  basic characteristics of a given dog, s
 
 In HLES, owners are asked to provide their dog's birth year (and month, if known)<sup>*</sup>, or, at the very least, their dog's age. Using that information along with the date of HLES completion, a dog's DOB and age at HLES can be estimated by the following methods.
 
-<sup>*</sup>Owners occasionally provide erroneous birth year (and potentially month) that result in an `Estimated_DOB` later than the dog's `DAP_Pack_Date` and a negative `Estimated_Age_Years_at_HLES`. In these cases, DAP researchers have updated this information based on other available data or by contacting the dog owner directly. These changes are reflected as of 2023 Curated Data Release HLES_dog_owner_v1.1 and Dog_Overview_v1.1.  
+<sup>*</sup>Owners occasionally provide erroneous birth year (and potentially month) that result in an `Estimated_DOB` later than the dog's `DAP_Pack_Date` and a negative `Estimated_Age_Years_at_HLES`. In these cases, DAP researchers have updated this information based on other available data or by contacting the dog owner directly. 
 
 | Owner provided      | DOB estimation method | Age estimation method |
 | :--- | :---------------------------- | :------------------------------- |
 | Birth year and month | Use birth year and month; assume 15 for day unless birth year and month are same as year and month of `DAP_Pack_Date`, in which case assume 1 for day | Difference between estimated DOB and HLES completion date |
-| Birth year only | Use birth year; if birth year != HLES completion year, assume 6 for month and 15 for day; otherwise assume midpoint between 1/1 and HLES completion date | Difference between estimated DOB and HLES completion date |
+| Birth year only | Use birth year; if birth year != HLES completion year, assume 6 for month and 15 for day; otherwise assume midpoint between January 1st and HLES completion date | Difference between estimated DOB and HLES completion date |
 | Age | Subtract age from HLES completion date | Use owner-reported age | 
 
 These estimation methods are used to define the following variables.
@@ -92,25 +92,25 @@ Our example dog is placed into the following categories:
 
 #### Survival status
 
-The following section provides information about the dog's death, if applicable. 
+The following section provides information about the dog's survival status and related measurements:
 
 | Variable      | Description | Example Values | 
 | :--- | :-------------------- | :------------------------------- |
-| `Status`<sup>1</sup> | Owner has notified DAP of dog's death by any method  | Alive<br>Dead | 
-| `DOD` | Owner-reported or estimated date of dog's death from any available source <sup>2</sup>  | YYYY-MM-DD | 
-| `DOD_Source` | Source for `DOD`  | Actual Date<br>Estimated by Owner<br>Estimated by date provided on Major Events<br>Estimated by midpoint between AFUS & last known alive |
-| `Days_To_Death` | For deceased dogs with reasonable `DOD`<sup>3</sup>, number of days from `DAP_Pack_Date` to death. | Numeric<br>Unable to calculate |
-| `Estimated_Age_Years_at_Death` | For deceased dogs with reasonable `DOD`<sup>3</sup>, estimated age at death. | Numeric<br>Unable to calculate | 
+| `Survival_Status` | Survival status. | Alive<br>Dead | 
+| `Survival_Source`<sup>1</sup> | Name of survey used to ascertain `Survival_Date`. | 1-2-3 Treat <br> Annual Follow-Up <br> Annual Follow-Up estimated date <br> Canine Social & Learned Behavior <br> End of Life date of death <br> HLES <br> Lab Draw <br> Major events <br> Morhphology & Mobility <br> My Profile <br> Study status date of death <br> Study Status reported date <br> Treat Hide-And-Seek | 
+| `Death_Source_Precision`<sup>1</sup> | Certainty of date of death. | Actual Date<br>Estimated by Owner<br>Estimated by date provided on Major Events<br>Estimated by midpoint between AFUS & last known alive<br>NA
+| `Survival_Days`<sup>1</sup> | Difference in days between `Survival_Date` and `DAP_Pack_Date`.| Numeric<br>NA |
+| `Survival_Date`<sup>1</sup> | Either death date or last known alive date.  | YYYY-MM-DD<br>NA | 
+| `Estimated_Survival_Age`<sup>1</sup> | Estimated age at `Survival_Date`. | Numeric<br>NA | 
 
-<sup>1</sup> In releases prior to the 2023 Curated Data, this variable was `Dog_Reported_Deceased` ('Y' or 'N').<br>
-<sup>2</sup> In releases prior to the 2023 Curated Data, this variable reflects only death dates reported by owners via EOLS.<br>
-<sup>3</sup> For dogs with reported `DOD` <= `DAP_Pack_Date`, this variable is not calculated.
+<sup>1</sup> For dogs with reported `DOD` <= `DAP_Pack_Date`, this variable is not calculated (NA).
 
-At the time of this writing, our example dog has not been reported as deceased, so no information associated with a death date exists.
+The owner of our example dog, who has an `Estimated_DOB` of 2010-06-15 and began participating in the study on their `DAP_Pack_Date` of 2020-10-13, reported the dog's death in the End of Life Survey by providing an Actual Date. They Date of Death (`Survival_Date`) was 2025-01-21. From this, we have calculated this dog has participated in the study for 1561 Days (`Survival_Days`). At the time of Death, we estimated their age to be 14.6 years old (`Estimated_Survival_Age`). 
 
-| dog_id | Status | DOD | DOD_Source | Days_To_Death | Estimated_Age_Years_at_Death |
-| :--- | :------ | :--------- |  :------------- | :--------- |  :------ | 
-| 33975 | Alive | NA | NA | NA | NA |
+| dog_id | Survival_Status | Survival_Source | Death_Source_Precision | Survival_Days | Survival_Date | Estimated_Survival_Age |
+| :--- | :------ | :--------- |  :------------- | :--------- |  :------ |   :------ | 
+| 33975 | Dead | End of Life date of death | Actual Date | 1561 | 2025-01-21 | 14.6 |
+
 
 ### Survey completion
 
@@ -118,24 +118,18 @@ This section provides a snapshot of which surveys have been completed for a give
 
 | Variable      | Description | Example Values |
 | :--- | :---------------------------- | :------------------------------- |
-| `CSLB_YYYY_Complete`      | Canine social and learned behavior completed in YYYY      |  Y <br> N |
-| `AFUS_YearY_Complete` (`AFUS_YYYY_Complete` in 2021 Curated Data)      | 12<sup>1</sup>-character string indicating instrument-level completion for AFUS followup year Y (AFUS calendar year YYYY in 2021 Curated Data). Character positions indicate: <br> 1 = Owner contact <br> 2 = Dog demograpics <br> 3 = Physical activity <br> 4 = Environment <br> 5 = Behavior <br> 6 = Diet <br> 7 = Meds and Preventives <br> 8 = Health Status <br> 9 = Owner demographics <br> 10 = DORA <br> 11 = MDORS <br> 12 = Age-Related Changes<sup>1</sup> |  YYYYYYYYYYY <br> (all instruments complete) <br><br> YYYNNNNNNNNN <br> (owner contact, dog demographics, physical activity complete) | 
-| `EOLS_Complete`      | End of life survey complete    |  Y <br> N | 
-| `CognitiveGames_123Treat_YYYY_Complete`<sup>2</sup> | 123-Treat activity completed in YYYY      |  Y <br> N | 
-| `CognitiveGames_TreatHideAndSeek_YYYY_Complete`<sup>3</sup> | Treat Hide & Seek completed in YYYY      |  Y <br> N |
-| `MorphometricsAndMobility_YYYY_Complete`<sup>2</sup> | 3-character string indicating instrument-level completion for Morphometrics & Mobility activities in YYYY. Character positions indicate: <br> 1 = Measure Your Dog <br> 2 = Jog/Run Activity <br> 3 = Stair Climb Activity | YNN |   
+| `AFUS_YearY_Complete`   | 12<sup>1</sup>-character string indicating instrument-level completion for AFUS followup year Y. Character positions indicate: <br> 1 = Owner contact <br> 2 = Dog demograpics <br> 3 = Physical activity <br> 4 = Environment <br> 5 = Behavior <br> 6 = Diet <br> 7 = Meds and Preventives <br> 8 = Health Status <br> 9 = Owner demographics <br> 10 = DORA <br> 11 = MDORS <br> 12 = Age-Related Changes<sup>1</sup> |  YYYYYYYYYYY <br> (all instruments complete) <br><br> YYYNNNNNNNNN <br> (owner contact, dog demographics, physical activity complete) <br><br> NA <br> (dog not eligible for AFUS YearY survey)| 
+| `EOLS_Complete`      | End of life survey complete    |  Y <br> NA (not reported dead) | 
+| `CSLB_YYYY_Complete`      | Canine social and learned behavior completed in YYYY      |  Y <br> N <br> NA (not eligible)|
+| `CognitiveGames_123Treat_YYYY_Complete`<sup>2</sup> | 123-Treat activity completed in YYYY      |  Y <br> N  <br> NA (not eligible)| 
+| `CognitiveGames_TreatHideAndSeek_YYYY_Complete`<sup>3</sup> | Treat Hide & Seek completed in YYYY      |  Y <br> N  <br> NA (not eligible)|
+| `MorphometricsAndMobility_YYYY_Complete`<sup>2</sup> | 3-character string indicating instrument-level completion for Morphometrics & Mobility activities in YYYY. Character positions indicate: <br> 1 = Measure Your Dog <br> 2 = Jog/Run Activity <br> 3 = Stair Climb Activity | YNN  <br> NA (not eligible)|   
 
 <sup>1</sup> The Age-Related Changes module was deployed in December 2021 and first included in 2023 Curated Data Release AFUS_dog_ownerv1.1 and Dog_Overview_v1.1.  
 <sup>2</sup> 123-Treat and Morphometrics and Mobility were first included in the 2023 Curated Data Release.  
 <sup>3</sup> Treat Hide & Seek was first included in the 2024 Curated Data Release. 
 
-Looking again to our example dog, we see that the owner completed CSLB for 2020, 2021, 2022, 2023, and 2024. 
-
-| dog_id | CSLB_2020_Complete | CSLB_2021_Complete | CSLB_2022_Complete | CSLB_2023_Complete | CSLB_2024_Complete | 
-| :--- | :------ | :---- | :---- | :---- | :---- | 
-| 33975 | Y | Y | Y | Y | Y | 
-
-All portions of AFUS except for Age-Related Changes were completed for follow-up year 1. In follow-up years 2 through 4, all 12 portions of AFUS were completed. At the time of this writing, this dog was not yet eligible for AFUS follow-up year 5.
+All portions of AFUS except for Age-Related Changes were completed for follow-up year 1. In follow-up years 2 through 4, all 12 portions of AFUS were completed. This dog was not yet eligible for AFUS follow-up year 5 (NA) becuase the dog died prior to it's owner's invitation to to complete these surveys.
 
 | dog_id | AFUS_Year1_Complete | AFUS_Year2_Complete | AFUS_Year3_Complete | AFUS_Year4_Complete | AFUS_Year5_Complete | 
 | :--- | :------ | :---- | :---- | :---- | :---- | 
@@ -147,23 +141,29 @@ Unsurprisingly (since we have no knowledge of the dog being deceased), EOLS has 
 | :--- | :------ |
 | 33975 | N | 
 
-The dog and owner completed the 123-Treat activity in 2022, 2023 and 2024.
+Looking again to our example dog, we see that the owner completed CSLB for 2020, 2021, 2022, 2023, and 2024. In 2025, the owner was not invited to complete the survey (NA) due to the dog's death earlier that year.
 
-| dog_id | CognitiveGames_123Treat_2022_Complete | CognitiveGames_123Treat_2023_Complete | CognitiveGames_123Treat_2024_Complete | 
-| :--- | :------ | :---- | :---- | 
-| 33975 | Y | Y | Y | 
+| dog_id | CSLB_<br>2020_Complete | CSLB_<br>2021_Complete | CSLB_<br>2022_Complete | CSLB_<br>2023_Complete | CSLB_<br>2024_Complete | CSLB_<br>2025_Complete|
+| :--- | :------ | :---- | :---- | :---- | :---- | :---- |  
+| 33975 | Y | Y | Y | Y | Y | NA |
 
-The dog and owner completed Treat Hide & Seek in both 2023 and 2024.
+The dog and owner completed the 123-Treat activity in 2022, 2023 and 2024. In 2025, the owner was not invited to complete the survey (NA) due to the dog's death earlier that year. 
 
-| dog_id | CognitiveGames_TreatHideAndSeek_2023_Complete | CognitiveGames_TreatHideAndSeek_2024_Complete | 
-| :--- | :------ | :---- |  
-| 33975 | Y | Y | 
+| dog_id | CognitiveGames_123Treat_<br>2022_Complete | CognitiveGames_123Treat_<br>2023_Complete | CognitiveGames_123Treat_<br>2024_Complete | CognitiveGames_123Treat_<br>2025_Complete |  
+| :--- | :------ | :---- | :---- | :---- |
+| 33975 | Y | Y | Y | NA |
 
-The dog and owner completed all three of the Morphometrics and Mobility activities in 2022, two of the three Morphometrics and Mobility activities in 2023, and none in 2024.
+The dog and owner completed Treat Hide & Seek in both 2023 and 2024. In 2025, the owner was not invited to complete the survey (NA) due to the dog's death earlier that year.
 
-| dog_id | MorphometricsAndMobility_2022_Complete | MorphometricsAndMobility_2023_Complete | MorphometricsAndMobility_2024_Complete |
-| :--- | :------ | :---- | :---- | 
-| 33975 | YYY | YYN | NNN |  
+| dog_id | CognitiveGames_<br>TreatHideAndSeek_<br>2023_Complete | CognitiveGames_<br>TreatHideAndSeek_<br>2024_Complete | CognitiveGames_<br>TreatHideAndSeek_<br>2025_Complete |
+| :--- | :------ | :---- |  :---- |  
+| 33975 | Y | Y | NA |
+
+The dog and owner completed all three of the Morphometrics and Mobility activities in 2022, two of the three Morphometrics and Mobility activities in 2023, and none in 2024. In 2025, the owner was not invited to complete the survey (NA) due to the dog's death earlier that year.
+
+| dog_id | MorphometricsAndMobility_<br>2022_Complete | MorphometricsAndMobility_<br>2023_Complete | MorphometricsAndMobility_<br>2024_Complete | MorphometricsAndMobility_<br>2025_Complete |
+| :--- | :------ | :---- | :---- | :---- |
+| 33975 | YYY | YYN | NNN | NA |
 
 ### DNA Kit
 
@@ -180,7 +180,7 @@ The example dog is enrolled in Precision, and we see a `DNA_Swab_ID` populated, 
 | 33975  |  31020061515058 |
 
 
-### Environment data 
+<!--### Environment data 
 
 Owner-reported primary and secondary addresses are geocoded and linked to secondary data describing characteristics of the dog's environment. The following variables provide information about availabilty of environmental data for a given dog:
 
@@ -194,7 +194,7 @@ These fields indicate the presence of a geocoded primary address provided at HLE
 | dog_id      | PrimaryAddress_HLES | SecondaryAddress_HLES | 
 | :--- | :---------------------------- | :------------------------------- |
 | 33975   | Y | N | 
-
+-->
 *** 
 
-###### *last updated 2025-02-11*
+###### *last updated 2026-02-13*
