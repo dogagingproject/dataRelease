@@ -6,11 +6,11 @@ This document provides an introduction to the Dog Overview dataset using an exam
 
 This section provides basic information about the dog, including its unique identifier, when the dog became a member of the DAP Pack, and details about the dog's enrollment in a cohort (if relevant).
 
-| Variable      | Description | Example Values |
+| Variable      | Description | Possible Values |
 | :--- | :---------------------------- | :------------------------------- |
 | `dog_id`      | Unique dog identifier       | Integer | 
 | `DAP_Pack_Date` | Date of HLES completion | YYYY-MM-DD |
-| `Cohort` | Dog's enrolled cohort, if any | DAP Pack <br> Foundation <br>  Precision |
+| `Cohort` | Dog's enrolled cohort, if any | DAP Pack <br> Foundation <br>  Precision <br> Precision - Brain Health Study|
 | `Cohort_Enroll_Date` | Date enrolled in Foundation or Precision Cohort (if applicable) | YYYY-MM-DD |
 
 Using `dog_id` 33975 as an example, we can see that the dog became a member of the DAP pack on 2020-10-13, and was enrolled in the Precision cohort on 2021-06-21.
@@ -38,7 +38,7 @@ In HLES, owners are asked to provide their dog's birth year (and month, if known
 
 These estimation methods are used to define the following variables.
 
-| Variable      | Description | Example Values |
+| Variable      | Description | Possible Values |
 | :--- | :---------------------------- | :------------------------------- |
 | `Estimated_DOB`      | Best available estimate of DOB at HLES       | YYYY-MM-DD |
 | `Estimated_Age_Years_at_HLES` | Best available estimate of age at HLES | Numeric |
@@ -54,10 +54,10 @@ Going back to our example dog, we see that age and DOB were estimated using owne
 
 This section provides information regarding owner-reported purebred or mixed breed status, as well as specific breed(s).
 
-| Variable      | Description | Example Values |
+| Variable      | Description | Possible Values |
 | :--- | :---------------------------- | :------------------------------- |
 | `Breed_Status`      | Owner-reported breed status       |  Mixed breed <br> Purebred |
-| `Breed`      | Owner-reported single breed (if purebred) or two predominant breeds if mixed breed       |  Golden Retriever <br> St. Bernard/Australian Cattle Dog <br> Chihuahua/Unknown |
+| `Breed`      | Owner-reported single breed (if purebred) or two predominant breeds if mixed breed       |  e.g. Golden Retriever <br> St. Bernard/Australian Cattle Dog <br> Chihuahua/Unknown |
 
 We can see that our example dog has been reported as a mixed breed, with the two breeds described:
 
@@ -68,18 +68,18 @@ We can see that our example dog has been reported as a mixed breed, with the two
 
 #### Dog demographic reporting classifications
 
-This section contains breed, size, weight, age, and lifestage classifications for dogs based on best practices developed by DAP researchers. Use of these classifications is recommended to promote consistency and ease of comparison among analyses. For more information regarding these classifications, see [Guidelines for reporting dog demographics](https://pubs.dogagingproject.org/node/7645). 
+This section contains breed, size, weight, age, and lifestage classifications for dogs based on best practices developed by DAP researchers. Use of these classifications is recommended to promote consistency and ease of comparison among analyses. For more information regarding these classifications, see <a href=https://pubs.dogagingproject.org/node/7645" target="_blank" rel="noopener">Guidelines for reporting dog</a>.
 
 Note: a given dog's classification into some of these categories may vary over time (e.g., a female dog is spayed, a dog increases in weight as they age); all variables in the Dog Overview are calculated using a dog's status at the time of HLES completion.
 
-| Variable      | Description | Example Values                |
-| :--- | :----------------- | :------------------------------------------- |
+| Variable      | Description | Possible Values                |
+| :--- | :-------------------- | :------------------------------- |
 | `Sex_Class_at_HLES`      | Owner-reported sex and sterilization status      |  Female, intact <br> Female, spayed <br> Male, neutered <br> Male, intact |
-| `Weight_Class_at_HLES_5kg` | 5kg-increment weight bin based on owner-reported weight (for dogs estimated to be <1 year old at HLES: owner-reported expected adult weight)<sup>1</sup> at HLES | 0-4.9 <br> 30-34.9 <br> 45+| 
-| `Weight_Class_at_HLES_10kg` | 10kg-increment weight bin based on owner-reported weight (for dogs estimated to be <1 year old at HLES>: owner-reported expected adult weight)<sup>1</sup> at HLES | <10 <br> 20 - 29.9 <br> 40+ | 
+| `Weight_Class_at_HLES_5kg` | 5kg-increment weight bin based on owner-reported weight (for dogs estimated to be <1 year old at HLES: owner-reported expected adult weight)<sup>1</sup> at HLES | e.g. 0-4.9 <br> 30-34.9 <br> 45+| 
+| `Weight_Class_at_HLES_10kg` | 10kg-increment weight bin based on owner-reported weight (for dogs estimated to be <1 year old at HLES>: owner-reported expected adult weight)<sup>1</sup> at HLES | e.g. <10 <br> 20 - 29.9 <br> 40+ | 
 | `Breed_Class` | AKC status of breed(s) | AKC-Recognized Breed <br> Non-AKC-Recognized or Mixed Breed |
-| `Breed_Size_Class` | Breed size class based on breed and owner-reported weight (for dogs estimated to be <1 year old at HLES: owner-reported expected adult weight)<sup>1</sup> | Toy and small AKC-recognized purebred dogs <br> Medium AKC-recognized purebred dogs <br> Standard AKC-recognized purebred dogs <br> Large AKC-recognized purebred dogs <br> Giant AKC-recognized purebred dogs <br> Toy and small non-AKC breed dogs <br> Standard non-AKC breed dogs <br> Large non-AKC breed dogs <br> Giant non-AKC breed dogs |
-| `Age_Years_Class_at_HLES` | Age bin at HLES | <1 <br> 1.0 to 2.9 <br> 9.0 to 10.9 <br> 17+ |
+| `Breed_Size_Class` | Breed size class based on breed and owner-reported weight (for dogs estimated to be <1 year old at HLES: owner-reported expected adult weight)<sup>1</sup> | Toy and small AKC-recognized purebred dogs <br> Medium AKC-recognized purebred dogs <br> Standard AKC-recognized purebred dogs <br> Large AKC-recognized purebred dogs <br> Giant AKC-recognized purebred dogs <br> Toy and small non-AKC breed dogs <br> Medium non-AKC breed dogs <br> Standard non-AKC breed dogs <br> Large non-AKC breed dogs <br> Giant non-AKC breed dogs |
+| `Age_Years_Class_at_HLES` | Age bin at HLES | e.g. <1 <br> 1.0 to 2.9 <br> 9.0 to 10.9 <br> 17+ |
 | `Lifestage_Class_at_HLES` |	Lifestage classification based on `Breed_Size_Class` and `Estimated_Age_at_HLES` | Puppy <br> Young adult <br> Mature adult <br> Senior |  
 
 <sup>1</sup> Prior to June 2024, a bug in the data collection process prevented owners from being asked to provided an expected adult weight when they were only able to provide the dog's birth year and that year was the same as the year of `DAP_Pack_Date`. DAP researchers have updated this information based on other available data or by contacting the dog owner directly. These changes are reflected as of 2023 Curated Data Release HLES_dog_owner_v1.1 and Dog_Overview_v1.1. 
@@ -94,10 +94,10 @@ Our example dog is placed into the following categories:
 
 The following section provides information about the dog's survival status and related measurements:
 
-| Variable      | Description | Example Values | 
+| Variable      | Description | Possible Values | 
 | :--- | :-------------------- | :------------------------------- |
 | `Survival_Status` | Survival status. | Alive<br>Dead | 
-| `Survival_Source`<sup>1</sup> | Name of survey used to ascertain `Survival_Date`. | 1-2-3 Treat <br> Annual Follow-Up <br> Annual Follow-Up estimated date <br> Canine Social & Learned Behavior <br> End of Life date of death <br> HLES <br> Lab Draw <br> Major events <br> Morhphology & Mobility <br> My Profile <br> Study status date of death <br> Study Status reported date <br> Treat Hide-And-Seek | 
+| `Survival_Source`<sup>1</sup> | Name of survey used to ascertain `Survival_Date`. | 1-2-3 Treat <br> Annual Follow-Up <br> Annual Follow-Up estimated date <br> Canine Social & Learned Behavior <br> End of Life date of death <br> HLES <br> Lab Draw <br> Major events <br> Morphometrics & Mobility <br> My Profile <br> Study status date of death <br> Study Status reported date <br> Treat Hide-And-Seek <br> NA | 
 | `Death_Source_Precision`<sup>1</sup> | Certainty of date of death. | Actual Date<br>Estimated by Owner<br>Estimated by date provided on Major Events<br>Estimated by midpoint between AFUS & last known alive<br>NA
 | `Survival_Days`<sup>1</sup> | Difference in days between `Survival_Date` and `DAP_Pack_Date`.| Numeric<br>NA |
 | `Survival_Date`<sup>1</sup> | Either death date or last known alive date.  | YYYY-MM-DD<br>NA | 
@@ -116,9 +116,9 @@ The owner of our example dog, who has an `Estimated_DOB` of 2010-06-15 and began
 
 This section provides a snapshot of which surveys have been completed for a given dog.
 
-| Variable      | Description | Example Values |
+| Variable      | Description | Possible Values |
 | :--- | :---------------------------- | :------------------------------- |
-| `AFUS_YearY_Complete`   | 12<sup>1</sup>-character string indicating instrument-level completion for AFUS followup year Y. Character positions indicate: <br> 1 = Owner contact <br> 2 = Dog demograpics <br> 3 = Physical activity <br> 4 = Environment <br> 5 = Behavior <br> 6 = Diet <br> 7 = Meds and Preventives <br> 8 = Health Status <br> 9 = Owner demographics <br> 10 = DORA <br> 11 = MDORS <br> 12 = Age-Related Changes<sup>1</sup> |  YYYYYYYYYYY <br> (all instruments complete) <br><br> YYYNNNNNNNNN <br> (owner contact, dog demographics, physical activity complete) <br><br> NA <br> (dog not eligible for AFUS YearY survey)| 
+| `AFUS_YearY_Complete`   | 12<sup>1</sup>-character string indicating instrument-level completion for AFUS followup year Y. Character positions indicate: <br> 1 = Owner contact <br> 2 = Dog demograpics <br> 3 = Physical activity <br> 4 = Environment <br> 5 = Behavior <br> 6 = Diet <br> 7 = Meds and Preventives <br> 8 = Health Status <br> 9 = Owner demographics <br> 10 = DORA <br> 11 = MDORS <br> 12 = Age-Related Changes<sup>1</sup> |  YYYYYYYYYYYY <br> (all instruments complete) <br><br> YYYNNNNNNNNN <br> (owner contact, dog demographics, physical activity complete) <br><br> NA <br> (dog not eligible for AFUS YearY survey)| 
 | `EOLS_Complete`      | End of life survey complete    |  Y <br> NA (not reported dead) | 
 | `CSLB_YYYY_Complete`      | Canine social and learned behavior completed in YYYY      |  Y <br> N <br> NA (not eligible)|
 | `CognitiveGames_123Treat_YYYY_Complete`<sup>2</sup> | 123-Treat activity completed in YYYY      |  Y <br> N  <br> NA (not eligible)| 
@@ -135,11 +135,10 @@ All portions of AFUS except for Age-Related Changes were completed for follow-up
 | :--- | :------ | :---- | :---- | :---- | :---- | 
 | 33975 | YYYYYYYYYYYN | YYYYYYYYYYYY | YYYYYYYYYYYY | YYYYYYYYYYYY | NA | 
 
-Unsurprisingly (since we have no knowledge of the dog being deceased), EOLS has not been completed.
-
+As we know from the survival status seciton, our example dog was reported dead by the owner in the End of Life Survey. , the EOLS_Complete is Y.
 | dog_id | EOLS_Complete |
 | :--- | :------ |
-| 33975 | N | 
+| 33975 | Y | 
 
 Looking again to our example dog, we see that the owner completed CSLB for 2020, 2021, 2022, 2023, and 2024. In 2025, the owner was not invited to complete the survey (NA) due to the dog's death earlier that year.
 
@@ -167,17 +166,17 @@ The dog and owner completed all three of the Morphometrics and Mobility activiti
 
 ### DNA Kit
 
-For dogs enrolled in Foundation and Precision, a DNA sample is submitted for sequencing. If sequencing data for a given dog was returned from lab by ReleaseYear-12-31, the `DNA_Swab_ID` is provided.
+For dogs enrolled in Foundation and Precision, a DNA sample is submitted for sequencing. If sequencing data for a given dog was returned from lab by December 31st of the Data Release Year, the `DNA_Swab_ID` is provided.
 
 | Variable      | Description | Example Values |
 | :--- | :---------------------------- | :------------------------------- |
 | `DNA_Swab_ID`      | Swab ID     |  31020061515058 |
 
-The example dog is enrolled in Precision, and we see a `DNA_Swab_ID` populated, indicating that sequencing results were returned by 2021-12-31.
+The example dog is enrolled in Precision, and we see a `DNA_Swab_ID` populated.
 
 | dog_id       | DNA_Swab_ID |
 | :--- | :---------------------------- |
-| 33975  |  31020061515058 |
+| 33975  |  31020061515291 |
 
 
 <!--### Environment data 
