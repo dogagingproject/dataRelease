@@ -24,127 +24,74 @@ Successful data deliverables migrate to a Dog Aging Project workspace on Terra.b
 
 ---
 
-## Workspace
-
-### Data model
-
-The file `DogAgingProject_GeneticData_CuratedRelease_XXXX.tsv` provides sample information and genomic reports for each dog included in the data release.
-
-Columns:
-
-
-| Variable      | Description |
-| :--- | :----------- |
-| `dog`   | dog ID, also known as study ID       |
-| `sample`  | swab ID for sample        |
-| `bioproject`   | accession for NCBI BioProject |
-| `biosample`   | accession for NCBI BioSample |
-| `platform`   | platform ID for sequencing run |
-| `sra`   | accession for NCBI Sequence Read Archive |
-| `sex`   | sex, confirmed by chromosome X coverage (see *Sex confirmation*) |
-| `coi`   | coefficient of inbreeding, estimated from runs of homozygosity (see *Coefficients of inbreeding*) |
-| `size`   | genomic size prediction score, ranging from 0 (tiny) to 4 (giant) (see *Size predictions*) |
-
-### Data files
-
+## Workspace Files
 The Terra workspace bucket includes the following files:
-
-Genotyping data
-
-*PLINK1* bfile data set: 
-	`DogAgingProject_GeneticData_CuratedRelease_XXXX.bed` `DogAgingProject_GeneticData_CuratedRelease_XXXX.bim` `DogAgingProject_GeneticData_CuratedRelease_XXXX.fam`
-
-PLINK1 file sets are also provided at the level of individual chromosomes to facilitate easier downloading. These files are located in the folder `bfile_byChromosome`.
-
-Genomic reports
-	
-Sample information, sex confirmation, coefficients of inbreeding, and genomic size prediction scores: 
-
+### Genetic Overview : 
 `DogAgingProject_GeneticData_CuratedRelease_XXXX.tsv`
 
-Pairwise kinship (dog x dog): 
-
-`DogAgingProject_GeneticData_CuratedRelease_XXXX.kinship.tsv`
-
-Global ancestry (dog x population): 
-
-`DogAgingProject_GeneticData_CuratedRelease_XXXX.ancestry.tsv`
-	
-The ancestry file provides ancestry information for each dog included in the data release.
-	
-Columns:
+This file provides sample information, sex confirmation, coefficients of inbreeding, and genomic size prediction scores for each dog included in the data release. Raw sequencing read data (FASTQ files) are deposited to the NCBI Sequence Read Archive (SRA) under BioProject PRJNA800779. Use this file to link DAP Curated Data files with genetic sequences in SRA using the genetic sample ID (`sample`).
 
 | Variable      | Description |
 | :--- | :----------- |
-| `dog_id`   | dog ID, also known as study ID       |
-| `code`  | breed code        |
-| `pop`   | breed name |
-| `pct`   | percent ancestry |
+| `dog`   | Unique dog ID, refered to as `dog_id` in DAP Curated Data     |
+| `sample`  | Unique genetic sample ID, referred to as `DNA_Swab_ID` in DAP Dog Overview File.
+| `bioproject`   | Accession for NCBI BioProject |
+| `biosample`   | Accession for NCBI BioSample |
+| `platform`   | Platform ID for sequencing run |
+| `sra`   | Accession for NCBI Sequence Read Archive |
+| `sex`   | Sex, confirmed by chromosome X coverage |
+| `coi`   | Coefficient of inbreeding, estimated from runs of homozygosity |
+| `size`   | Genomic size prediction score, ranging from 0 (tiny) to 4 (giant)  |
+
+##### Sex confirmation
+
+We inferred the sex of each dog from aligned sequencing read data (BAM files) using *SAMtools* to measure the ratio of X chromosome coverage to autosomal coverage. Ratios over or equal to 0.7 were inferred as female, under 0.7 were inferred as male. We compared genetically-inferred sex to owner-reported sex in the Health and Life Experience Survey (HLES). 
+
+##### Coefficients of inbreeding
+
+We estimated coefficients of inbreeding as autozygosity, or the proportion of genome covered by runs of homozygosity (ROH). We scanned for ROH using *PLINK1* across the set of unfiltered biallelic SNP genotypes of genotype probability >70% with the following settings: minimum run length of 500kb (`--homozyg-kb 500`) and minimum SNP count of 100 SNPs (`--homozyg-snp 100`), at a density of 1kb per SNP (`--homozyg-density 1`), with no two SNPs more than 500kb apart (`--homozyg-gap 500`), and only 1 heterozygous genotype tolerated per window (`--homozyg-window-het 1`), performing scans without LD-based pruning on chromosomes 1-38 (`--chr 1-38`). All other settings were *PLINK1* defaults. We then calculated the autosomal ROH-estimated coefficient of inbreeding (F<sub>ROH</sub>, or CoI) from the total ROH segment length divided by the total SNP-covered autosomal length used for ROH detection. 
+
+##### Genomic size prediction
+
+We applied a random forest model developed on the Darwin's Ark (darwinsark.org) data set of 1,730 dogs with surveyed height phenotypes, coded as 0 = tiny, 1 = small, 2 = medium, 3 = large, or 4 = giant as assessed by dog owners, and 2,733 SNPs associated with canine height to predict body sizes (mean square error = 0.3). 
+
+### Genotyping data (*PLINK1* bfile data set): 	
+`DogAgingProject_GeneticData_CuratedRelease_XXXX.bed` 
+`DogAgingProject_GeneticData_CuratedRelease_XXXX.bim` 
+`DogAgingProject_GeneticData_CuratedRelease_XXXX.fam`
 
 
-### Raw sequencing data
-
-Raw sequencing read data (FASTQ files) are deposited to the NCBI Sequence Read Archive under BioProject PRJNA800779. Sample IDs correspond to swab IDs (`sample`), not study IDs (`dog_id`).
-
-### Genotyping data
-
-Genotyping data (imputed variant calls) are released as a *PLINK1* bfile set containing filtered SNP genotypes. Sample IDs correspond to study IDs (`dog_id`).
-
-### Genomic reports
-
-The genomic reports are data derived and inferred from genetic data that are neither raw sequencing nor genotyping data. Sample IDs correspond to study IDs (`dog_id`).
-
----
-
-## Methods
-
-### Sex confirmation
-
-We inferred the sex of each dog from aligned sequencing read data (BAM files) using *SAMtools* to measure the ratio of X chromosome coverage to autosomal coverage. Ratios over or equal to 0.7 were inferred as female, under 0.7 were inferred as male. We compared genetically-inferred sex to owner-reported sex given by the variable ss_dog_sex in the Health and Life Experience Survey (HLES). 
-
-Confirmed sexes for each dog are reported as `sex` in file:
-`DogAgingProject_GeneticData_CuratedRelease_XXXX.tsv`
-
-### Filtering
+Genotyping data (imputed variant calls) are released as a *PLINK1* bfile set containing filtered SNP genotypes listed by unique dog ID.
 
 Each variant call file (VCF) was filtered for calls of genotype probability above 70% (max(GP) > 0.7) using *BCFtools*. Sample IDs were converted from swab IDs to study IDs and genotyping data from multiple samples were merged in batches using *BCFtools*. Each merged VCF was converted to a *PLINK2* pfile data set (.pgen / .pvar / .psam) containing all variant calls (insertions, deletions, single nucleotide polymorphisms, multiallelic variants). Then, only biallelic SNPs were selected and converted to a *PLINK1* bfile data set (.bed / .bim / .fam). A final filtering step to include only SNPs with a minimum minor allele frequency of 1% and minimum genotype rate of 95% was applied. Confirmed sexes were encoded into this final *PLINK1* data set.
 
-### Coefficients of inbreeding
+PLINK1 file sets are also provided at the level of individual chromosomes to facilitate easier downloading. These files are located in the folder `bfile_byChromosome`.
 
-We estimated coefficients of inbreeding as autozygosity, or the proportion of genome covered by runs of homozygosity (ROH). We scanned for ROH using *PLINK1* across the set of unfiltered biallelic SNP genotypes of genotype probability >70% with the following settings: minimum run length of 500kb (`--homozyg-kb 500`) and minimum SNP count of 100 SNPs (`--homozyg-snp 100`), at a density of 1kb per SNP (`--homozyg-density 1`), with no two SNPs more than 500kb apart (`--homozyg-gap 500`), and only 1 heterozygous genotype tolerated per window (`--homozyg-window-het 1`), performing scans without LD-based pruning on chromosomes 1-38 (`--chr 1-38`). All other settings were *PLINK1* defaults. We then calculated the autosomal ROH-estimated coefficient of inbreeding (F<sub>ROH</sub>, or CoI) from the total ROH segment length divided by the total SNP-covered autosomal length used for ROH detection.
-
-Coefficients of inbreeding are reported as `coi` in file:
-`DogAgingProject_GeneticData_CuratedRelease_XXXX.tsv`
-
-### Genomic size prediction
-
-We applied a random forest model developed on the Darwin's Ark (darwinsark.org) data set of 1,730 dogs with surveyed height phenotypes, coded as 0 = tiny, 1 = small, 2 = medium, 3 = large, or 4 = giant as assessed by dog owners, and 2,733 SNPs associated with canine height to predict body sizes (mean square error = 0.3).
-
-Genomic size predictions are reported as `size` in file:
-`DogAgingProject_GeneticData_CuratedRelease_XXXX.tsv`
-
-### Global ancestry
-
-We selected publicly available genotype data from 109 modern breeds with at least 4 dogs per breed, 3 regional village dog populations (4 Nigerian village dogs, 5 Vietnamese village dogs, 55 Chinese village dogs), and 2 wolf populations (19 North American wolves and 25 Eurasian wolves) (see *Populations* for full list of population labels and counts). We used *PLINK2* to identify ancestry-informative markers. We selected 4,267,732 biallelic single nucleotide polymorphisms with <10% missing genotypes, and calculated the Wrightâ€™s F-statistics using Hudson method for (1) each dog breed versus all other purebred dogs; (2) all village dogs versus all other purebred dogs; (3) each regional village dog population; (4) all wolves versus all other dogs; (5) North American wolves versus Eurasian wolves. We selected 1,569,037 SNPs with F<sub>ST</sub> > 0.5 across all comparisons, and performed LD-based pruning in 250kb windows for r<sup>2</sup> > 0.2 to extract 115,427 markers for global ancestry inference.
-
-We merged genotype data for these biallelic SNPs from query samples with genotype data from reference samples, then performed global ancestry inference using *ADMIXTURE* in supervised mode (random seed: 43) to infer ancestry from these populations. We report only admixture proportions over 1% for each dog.
-
-The global ancestry inferred for each dog are reported in file:
-`DogAgingProject_GeneticData_CuratedRelease_XXXX.ancestry.tsv`
-
-### Genetic relationship matrix
-
-We calculated the variance-standardized relationship matrix generated using *PLINK2* (`--make-rel`) across all autosomes.
-
-The genetic relationship matrix is reported in file:
-`DogAgingProject_GeneticData_CuratedRelease_XXXX.rel.tsv`
-
-### Pairwise kinship
+### Pairwise kinship (dog x dog): 
+`DogAgingProject_GeneticData_CuratedRelease_XXXX.kinship.tsv`
 
 We applied the *PLINK2* implementation of the KING-robust estimator to measure kinship *k* between pairs of dogs from mixed populations. Relationships were either unrelated, and removed from the resulting table, or labeled as related (*k* > 0), second-degree (*k* >= 0.125), or first-degree (*k* >= 0.25). We apply a cutoff *k* >= 0.35 to identify duplicate samples. No data from duplicate samples are included in this release.
+### Global ancestry (dog x population): 
 
-The relatedness for each pair of dogs are reported in file:
-`DogAgingProject_GeneticData_CuratedRelease_XXXX.kinship.tsv`
+`DogAgingProject_GeneticData_CuratedRelease_XXXX.ancestry.tsv`
+
+The ancestry file provides ancestry information for each dog included in the data release.
+
+| Variable      | Description |
+| :--- | :----------- |
+| `dog_id`   | Unique dog ID       |
+| `code`  | Breed code        |
+| `pop`   | Breed name |
+| `pct`   | Percent ancestry |
+
+We selected publicly available genotype data from 109 modern breeds with at least 4 dogs per breed, 3 regional village dog populations (4 Nigerian village dogs, 5 Vietnamese village dogs, 55 Chinese village dogs), and 2 wolf populations (19 North American wolves and 25 Eurasian wolves) (see Populations for full list of population labels and counts). We used PLINK2 to identify ancestry-informative markers. We selected 4,267,732 biallelic single nucleotide polymorphisms with <10% missing genotypes, and calculated the Wrightâ€™s F-statistics using Hudson method for (1) each dog breed versus all other purebred dogs; (2) all village dogs versus all other purebred dogs; (3) each regional village dog population; (4) all wolves versus all other dogs; (5) North American wolves versus Eurasian wolves. We selected 1,569,037 SNPs with F<sub>ST</sub> > 0.5 across all comparisons, and performed LD-based pruning in 250kb windows for r<sup>2</sup> > 0.2 to extract 115,427 markers for global ancestry inference.
+
+We merged genotype data for these biallelic SNPs from query samples with genotype data from reference samples, then performed global ancestry inference using ADMIXTURE in supervised mode (random seed: 43) to infer ancestry from these populations. We report only admixture proportions over 1% for each dog.
+
+### Genetic relationship matrix
+`DogAgingProject_GeneticData_CuratedRelease_XXXX.rel.tsv`
+
+We calculated the variance-standardized relationship matrix generated using *PLINK2* (`--make-rel`) across all autosomes.
 
 ---
 ### Software
@@ -294,4 +241,4 @@ Note that the breed panel used for ancestry inference differs from the panel use
 
 *** 
 
-###### *last updated 2026-02-13*
+###### *last updated 2026-02-16*
