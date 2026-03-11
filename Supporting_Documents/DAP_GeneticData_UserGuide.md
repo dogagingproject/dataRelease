@@ -35,10 +35,9 @@ This file provides sample information, sex confirmation, coefficients of inbreed
 | :--- | :----------- |
 | `dog`   | Unique dog ID, refered to as `dog_id` in DAP Curated Data     |
 | `sample`  | Unique genetic sample ID, referred to as `DNA_Swab_ID` in DAP Dog Overview File.
-| `bioproject`   | Accession for NCBI BioProject |
-| `biosample`   | Accession for NCBI BioSample |
+| `bioproject`   | NCBI BioProject # in SRA|
+| `biosample`   | NCBI BioSample Accession # in SRA |
 | `platform`   | Platform ID for sequencing run |
-| `sra`   | Accession for NCBI Sequence Read Archive |
 | `sex`   | Sex, confirmed by chromosome X coverage |
 | `coi`   | Coefficient of inbreeding, estimated from runs of homozygosity |
 | `size`   | Genomic size prediction score, ranging from 0 (tiny) to 4 (giant)  |
